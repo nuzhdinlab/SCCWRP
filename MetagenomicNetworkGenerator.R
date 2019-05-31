@@ -7,13 +7,13 @@ wd <- "~/Desktop/SCCWRP/Metagenomics"
 setwd(wd)
 
 #Get all taxonomic file names.
-TaxonomyFiles <- Sys.glob("*TableWithTaxonomy.txt")
+ASVFiles <- Sys.glob("*TableWithTaxonomy.txt")
 #Get all ASV tables.
-ASVFiles <- Sys.glob("*Taxonomy.tsv")
+TaxonomyFiles <- Sys.glob("*Taxonomy.tsv")
 
 #Read in ASV tables and taxonomy data.
-TaxonomyRaw <- read.table("18SV9P1Taxonomy.tsv", quote="", header=TRUE, sep="\t",as.is=T,skip=0,fill=TRUE,check.names=FALSE, encoding = "UTF-8")
-ASVRaw <-read.table("18SV9P1TableWithTaxonomy.txt", quote="", header=TRUE, sep="\t",as.is=T,skip=0,fill=TRUE,check.names=FALSE, encoding = "UTF-8")
+TaxonomyRaw <- read.table(TaxonomyFiles[1], quote="", header=TRUE, sep="\t",as.is=T,skip=0,fill=TRUE,check.names=FALSE, encoding = "UTF-8")
+ASVRaw <-read.table(ASVFiles[1], quote="", header=TRUE, sep="\t",as.is=T,skip=0,fill=TRUE,check.names=FALSE, encoding = "UTF-8")
 
 #Fiter taxonomy data by confidence levels.
 Taxonomy <- subset(TaxonomyRaw,confidence==1)
